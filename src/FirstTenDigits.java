@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -40,21 +41,26 @@ public class FirstTenDigits {
 	}
 	
 	public static void topTen(int[][] twoD) {
-		int[] buffer = new int[50];
-		ArrayList<Integer> list = new ArrayList<Integer>();
+		long buffer = 0;
+		long result[] = new long[50];
 		
 		for(int column = 49;column >=0; column--) {
-			int indiSum =0;
+			long indiSum =0;
 			for (int row =0;row < 100;row++) {
 				indiSum+=twoD[row][column];
-				indiSum+=buffer[column];
-				if(column != 0){
-					buffer[column-1] = indiSum/10;	
-				}
 				
-				System.out.println(indiSum);
 			}
+			System.out.print("Column Sum : " + indiSum);
+			indiSum+=buffer;
+			System.out.println(" - After : " + indiSum);
+				buffer = indiSum/10;
+				System.out.println("Buffer : "+ buffer);
+			result[column] = indiSum%10;
+			System.out.println("result["+column+"] : "+ result[column]);
+				//System.out.println(indiSum);
+			
 		}
+		System.out.println(buffer+""+Arrays.toString(result));
 	}
 
 }
